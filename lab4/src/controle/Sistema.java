@@ -2,6 +2,7 @@ package controle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Laboratório de Programação 2 - Lab 4
@@ -15,6 +16,9 @@ public class Sistema {
     private ArrayList<Aluno> alunosParticipantes;
 
     public Sistema() {
+        this.alunos = new HashMap<String, Aluno>();
+        this.grupos = new HashMap<String, Grupo>();
+        this.alunosParticipantes = new ArrayList<Aluno>();
     }
 
     public boolean cadastrarAluno(String matricula, String nome, String curso){
@@ -27,19 +31,40 @@ public class Sistema {
         return true;
     }
 
-    public String consultarAluno(String matricula){
+    public Aluno consultarAluno(String matricula){
         if(!alunos.containsKey(matricula)){
-            return "Matrícula: " + matricula + "\n\nAluno não cadastrado.";
+            return null;
         }
 
         Aluno aluno = alunos.get(matricula);
 
-        return "Matrícula: " + matricula + "\n\nAluno: " + aluno.toString();
+        return aluno;
     }
 
     public boolean cadastrarGrupo(String nome){
         if(grupos.containsKey(nome)){
-            
+            return false;
         }
+
+        grupos.put(nome, new Grupo(nome));
+
+        return true;
     }
+
+    public Grupo consultarGrupo(String nome){
+        if(!grupos.containsKey(nome)){
+            return null;
+        }
+
+        Grupo grupo = grupos.get(nome);
+
+        return grupo;
+    }
+
+    public String alocarAluno(String matricula, String nomeGrupo){
+        Aluno aluno = consultarAluno(matricula);
+        Grupo grupo = consultarGrupo(nomeGrupo);
+    }
+
 }
+

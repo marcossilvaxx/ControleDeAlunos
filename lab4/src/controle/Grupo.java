@@ -13,11 +13,14 @@ public class Grupo {
     private String nome;
     private HashSet<Aluno> alunos;
 
-    public Grupo(String nome, HashSet<Aluno> alunos){
+    public Grupo(String nome){
         this.nome = nome;
-        this.alunos = alunos;
+        this.alunos = new HashSet<Aluno>();
     }
 
+    public boolean adicionarAluno(Aluno aluno){
+        return alunos.add(aluno);
+    }
 
     @Override
     public boolean equals(Object o) {

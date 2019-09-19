@@ -26,7 +26,7 @@ public class Aluno {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Aluno aluno = (Aluno) o;
-        return Objects.equals(matricula, aluno.matricula);
+        return Objects.equals(this, aluno);
     }
 
     @Override
